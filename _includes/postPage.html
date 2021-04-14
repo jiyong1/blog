@@ -1,0 +1,26 @@
+{% if paginator.posts %}
+<h1>{{ paginator.first_page_path | remove: "/" }}</h1>
+  {% for post in paginator.posts %}
+      <div class="post-list">
+        <div class="post-card">
+          <h2><a href="{{ post.url }}" class="link-post_list">{{ post.title }}</a></h2>
+          <p class="post-meta">{{ post.date | date: "%y-%m-%d" }}</p>
+          <div class="post-list-content">
+              {{ post.excerpt | truncatewords: 45, '...' }}
+              <p class="text-right"><a href="{{ post.url }}">read more...</a></p>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+{% endif %}
+<script src="/assets/script/infiniteScroll.js"></script>
+<script>
+  const postWrapper = '.post-list';
+  const paginatePath = "page";
+  const hostStart = window.location.href.indexOf(window.location.hostname) + window.location.hostname.length;
+  let categoryString = window.location.href.slice(hostStart, window.location.href.length);
+  if (categoryString[0] === ':'){
+    categoryString = categoryString.slice(5, categoryString.length);
+  }
+  new InfiniteScroll(paginatePath, postWrapper, categoryString);
+</script>

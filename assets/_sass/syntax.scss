@@ -271,6 +271,13 @@ p img{
 
 @media (min-width: 1000px){
   p img{
+    display: block;
     width: 50%;
+    margin: 0 auto;
   }
+}
+
+h1 {
+  margin-bottom: 1em;
+  text-align: center;
 }

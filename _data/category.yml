@@ -1,2 +1,4 @@
 - name: Python
-  link: /python
+  link: /Python
+- name: django
+  link: /django

@@ -7,7 +7,7 @@ thumbnail: "/assets/images/Container.assets/61180439-44e60d80-a651-11e9-9adc-e60
 
 <br>
 
-# 컨테이너(Container)
+# [Python] 컨테이너(Container)
 
 여러 개의 값을 저장할 수 있는 것(~~객체~~)
 
