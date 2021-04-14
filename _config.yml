@@ -1,0 +1,26 @@
+
+email: jyong9591@gmail.com
+lang: ko-KR
+git_address: https://github.com/jiyong1
+
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-paginate-v2
+pagination:
+  enabled: true
+  per_page: 9
+  sort_reverse: true
+
+permalink: pretty
+
+sass:
+  sass_dir: assets/_sass
+  style: compressed
+
+  exclude:
+  - Gemfile
+  - Gemfile.lock
+  - assets/css
+  - assets/images

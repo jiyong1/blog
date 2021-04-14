@@ -1,0 +1,24 @@
+
+<nav class="top-nav">
+  <div class="logo-con">
+    <img src="/assets/images/seventwo_logo.png" alt="seventwo 로고 이미지" class="logo-img">
+  </div>
+  <div class="b-name"><a href="/">SevenTwo</a></div>
+  <div class="toggle-btn">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+  <div class="nav-list">
+    <ul>
+      {% for item in site.data.navigation %}
+        <li class="nav-items">
+          <a href="{{ item.link }}" class="item{% if page.url == item.link %} current-link {% else %} other-link {% endif %}">
+            {{ item.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% include mode.html %}
+</nav>

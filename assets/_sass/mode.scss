@@ -1,0 +1,89 @@
+.mode-con{
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+#mode-btn{
+  position: relative;
+  width: 80px;
+  height: 40px;
+  border: solid whitesmoke;
+  border-radius: 20px;
+}
+.btn-circle{
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 28px;
+  height: 28px;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  transition: .5s;
+}
+
+.mode-icon {
+  position: absolute;
+  font-size: 24px;
+  top: -2px;
+}
+.mode-icon.sun {
+  left: 5px;
+  color: #d45837;
+}
+.mode-icon.moon {
+  right: 5px;
+  color: #fde0a2;
+}
+
+
+@media (max-width: 576px){
+  .mode-con {
+    top: calc(3rem - 15px);
+    bottom: auto;
+    right: 56px;
+  }
+  #mode-btn {
+    width: 60px;
+    height: 30px;
+  }
+  .btn-circle{
+    width: 20px;
+    height: 20px;
+    left: 2px;
+    top: 2px;
+  }
+  .btn-circle[data-mode='light']{
+    -moz-transform: translateX(30px);
+    -webkit-transform: translateX(30px);
+    -o-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
+  }
+  .mode-icon {
+    font-size: calc(24px * (24/34));
+  }
+}
+
+@media (min-width: 576px){
+  .mode-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-circle[data-mode='light']{
+    background-color: var(--dark-color);
+    -moz-transform: translateX(40px);
+    -webkit-transform: translateX(40px);
+    -o-transform: translateX(40px);
+    -ms-transform: translateX(40px);
+    transform: translateX(40px);
+  }
+
+  #mode-btn[data-mode='light']{
+    border-color: var(--dark-color);
+  }
+}

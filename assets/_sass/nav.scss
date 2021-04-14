@@ -1,0 +1,138 @@
+.top-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 6rem;
+  background-color: #222;
+  display: flex;
+  /* position: relative; */
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s;
+  padding: 0 1rem;
+  z-index: 100;
+}
+.b-name {
+  font-weight: 900;
+  font-size: 2rem;
+  height: 6rem;
+  z-index: 100;
+}
+.b-name a{
+  position: absolute;
+  left: 1rem;
+  top: calc(50% - 25px);
+  text-decoration: none;
+  color: whitesmoke;
+}
+.logo-con {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: .2s;
+}
+.logo-img {
+  display: block;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.nav-list {
+  z-index: 100;
+}
+.nav-list ul {
+  display: flex;
+  margin-bottom: 0;
+}
+.nav-list li {
+  list-style: none;
+}
+.nav-list li .item {
+  text-decoration: none;
+  padding: 0.2rem;
+  display: block;
+  margin: 0.5rem;
+}
+
+.other-link {
+  color: #bbb;
+}
+
+.nav-list a:hover {
+  color: #888;
+}
+.nav-list .other-link:hover {
+  color:white;
+}
+
+.toggle-btn {
+  position: absolute;
+  right: 1rem;
+  top: calc(3rem - 21px/2);
+  display: none;
+  z-index: 100;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-btn .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #bbb;
+  border-radius: 10px;
+}
+
+@media (max-width: 576px){
+  .toggle-btn {
+    display: flex;
+  }
+
+  .b-name {
+    font-size: 1.3rem;
+  }
+
+  .b-name a {
+    top: calc(3rem - 15.5px);
+  }
+
+  .nav-list {
+    // display: none;
+    width: 100%;
+  }
+  .nav-list ul {
+    flex-direction: column;
+    padding: 0px;
+    width: 100%;
+  }
+
+  .top-nav {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .nav-list li .item {
+    text-align: center;
+  }
+
+  .current-link {
+    color: #bbb;
+    background-color: #555;
+  }
+
+}
+
+@media (min-width: 576px){
+  .current-link {
+    border-bottom: solid #888;
+    color: #888;
+  }
+}
+
+.top-nav[data-scheme='dark'] {
+  background-color: #333;
+}

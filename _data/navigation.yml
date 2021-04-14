@@ -1,0 +1,9 @@
+- name: Home
+  link: /
+  real: /
+- name: About
+  link: /about/
+  real: /about.html
+- name: Posts
+  link: /posts/
+  real: /posts/

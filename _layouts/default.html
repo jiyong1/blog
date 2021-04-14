@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="SevenTwo's Devlog">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="글보다는 그림으로 표현하는 주니어 개발자의 블로그">
+  <meta property="og:image" content="/assets/images/seventwo_logo.png">
+  <meta property="og:url" content="https://jiyong1.github.io">
+  <title>{{ page.title }}</title>
+  <link rel="icon" href="/assets/images/favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="https://kit.fontawesome.com/63e1d65e2b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <script src="/assets/script/mode_init.js"></script>
+  {% include navigation.html %}
+  <div class="container nav-margin">
+    {{ content }}
+  </div>
+  {% include up.html %}
+  <script src="/assets/script/nav.js"></script>
+  <script src="/assets/script/mode.js"></script>
+  <script src="/assets/script/up.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>

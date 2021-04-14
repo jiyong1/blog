@@ -1,0 +1,19 @@
+<nav class="mode-con">
+  <div id="mode-btn">
+    <div class="mode-icon sun">
+        <i class="fas fa-sun"></i>
+    </div>
+    <div class="mode-icon moon">
+      <i class="fas fa-moon"></i>
+    </div>
+    <!-- <div class="btn-circle"></div> -->
+    <script>
+      let btndiv = document.createElement('div');
+      let scheme = localStorage.getItem('scheme');
+      btndiv.dataset.mode = scheme;
+      btndiv.classList.add('btn-circle');
+
+      document.querySelector('#mode-btn').appendChild(btndiv);
+    </script>
+  </div>
+</nav>

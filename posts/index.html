@@ -1,0 +1,8 @@
+---
+layout: default
+title: Posts | Seven Two
+---
+
+{% for page in site.data.category %}
+  <a href="{{page.link}}">{{ page.name }}</a>
+{% endfor %}
