@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="SevenTwo's Devlog">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="글보다는 그림으로 표현하는 주니어 개발자의 블로그">
+  <meta property="og:image" content="/assets/images/seventwo_logo.png">
+  <meta property="og:url" content="https://jiyong1.github.io">
+  <title>Seven Two Devlog</title>
+  <link rel="icon" href="/assets/images/favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/home.css">
+  <script src="https://kit.fontawesome.com/63e1d65e2b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <script src="/assets/script/mode_init.js"></script>
+  
+<nav class="top-nav">
+  <div class="logo-con">
+    <img src="/assets/images/seventwo_logo.png" alt="seventwo 로고 이미지" class="logo-img">
+  </div>
+  <div class="b-name"><a href="/">SevenTwo</a></div>
+  <div class="toggle-btn">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+  <div class="nav-list">
+    <ul>
+      
+        <li class="nav-items">
+          <a href="/" class="item current-link ">
+            Home
+          </a>
+        </li>
+      
+        <li class="nav-items">
+          <a href="/about/" class="item other-link ">
+            About
+          </a>
+        </li>
+      
+        <li class="nav-items">
+          <a href="/posts/" class="item other-link ">
+            Posts
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  <nav class="mode-con">
+  <div id="mode-btn">
+    <div class="mode-icon sun">
+        <i class="fas fa-sun"></i>
+    </div>
+    <div class="mode-icon moon">
+      <i class="fas fa-moon"></i>
+    </div>
+    <!-- <div class="btn-circle"></div> -->
+    <script>
+      let btndiv = document.createElement('div');
+      let scheme = localStorage.getItem('scheme');
+      btndiv.dataset.mode = scheme;
+      btndiv.classList.add('btn-circle');
+
+      document.querySelector('#mode-btn').appendChild(btndiv);
+    </script>
+  </div>
+</nav>
+</nav>
+
+  <div class="container nav-margin">
+    <div class="row">
+  <div class="d-none d-lg-block col-3 tmp">
+    <div class="home-card ttt">
+
+    </div>
+  </div>
+  <div class="carousel col-12 col-lg-9">
+    <div class="d-flex align-items-center">
+      <button class="carousel-button l"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel-container home-card">
+        <ul class="carousel-track">
+          <li class="carousel-slide a">
+            <img src="/assets/images/about_carou.png" alt="about 이미지" class="carousel-img">
+            <div class="carousel-description a">
+              <h3>Who Am I</h3>
+              <p>저를 소개합니다 !</p>
+              <div class="btn-con">
+                <a href="/about/" class="btn btn-secondary">About Page</a>
+              </div>
+            </div>
+          </li>
+          <li class="carousel-slide b">
+            <img src="/assets/images/post_carou.png" alt="about 이미지" class="carousel-img">
+            <div class="carousel-description b">
+              <h3>Posts</h3>
+              <p>매일 배운 것을 정리 및 기록합니다.</p>
+              <div class="btn-con">
+                <a href="/posts/" class="btn btn-secondary">Posts Page</a>
+              </div>
+            </div>
+          </li>
+          <li class="carousel-slide c">
+            <img src="/assets/images/imadeit_carou.png" alt="about 이미지" class="carousel-img">
+            <div class="carousel-description c">
+              <h3>I Made It</h3>
+              <p>공사중..</p>
+              <div>
+                <a href="/about/"><div class="des-btn"></div></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button class="carousel-button r"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="carousel-circle-con">
+      <div class="carousel-circle a circle-check"></div>
+      <div class="carousel-circle b"></div>
+      <div class="carousel-circle c"></div>
+    </div>
+  </div>
+  <div class="d-none d-"></div>
+  <div class="col-12 tmp">
+    <div class="ttt home-card"></div>
+  </div>
+</div>
+  </div>
+  <button class="up-arrow">
+  <i class="fas fa-arrow-up"></i>
+</button>
+  <script src="/assets/script/home.js"></script>
+  <script src="/assets/script/nav.js"></script>
+  <script src="/assets/script/mode.js"></script>
+  <script src="/assets/script/up.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="SevenTwo's Devlog">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="글보다는 그림으로 표현하는 주니어 개발자의 블로그">
+  <meta property="og:image" content="/assets/images/seventwo_logo.png">
+  <meta property="og:url" content="https://jiyong1.github.io">
+  <title>[Python] 에러 처리</title>
+  <link rel="icon" href="/assets/images/favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/mdpost.css">
+  <script src="https://kit.fontawesome.com/63e1d65e2b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <script src="/assets/script/mode_init.js"></script>
+  
+<nav class="top-nav">
+  <div class="logo-con">
+    <img src="/assets/images/seventwo_logo.png" alt="seventwo 로고 이미지" class="logo-img">
+  </div>
+  <div class="b-name"><a href="/">SevenTwo</a></div>
+  <div class="toggle-btn">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+  <div class="nav-list">
+    <ul>
+      
+        <li class="nav-items">
+          <a href="/" class="item other-link ">
+            Home
+          </a>
+        </li>
+      
+        <li class="nav-items">
+          <a href="/about/" class="item other-link ">
+            About
+          </a>
+        </li>
+      
+        <li class="nav-items">
+          <a href="/posts/" class="item other-link ">
+            Posts
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+  <nav class="mode-con">
+  <div id="mode-btn">
+    <div class="mode-icon sun">
+        <i class="fas fa-sun"></i>
+    </div>
+    <div class="mode-icon moon">
+      <i class="fas fa-moon"></i>
+    </div>
+    <!-- <div class="btn-circle"></div> -->
+    <script>
+      let btndiv = document.createElement('div');
+      let scheme = localStorage.getItem('scheme');
+      btndiv.dataset.mode = scheme;
+      btndiv.classList.add('btn-circle');
+
+      document.querySelector('#mode-btn').appendChild(btndiv);
+    </script>
+  </div>
+</nav>
+</nav>
+
+  <div class="container nav-margin">
+    <h1 id="에러--예외-처리">에러 &amp; 예외 처리</h1>
+
+<p><br /></p>
+
+<h2 id="에러error">에러(error)</h2>
+
+<blockquote>
+  <p>발생할 수 있는 에러의 종류를 확인해보자</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="문법-에러syntax-error">문법 에러(Syntax Error)</h3>
+
+<blockquote>
+  <p>문법 에러가 있는 프로그램은 실행되지 않는다</p>
+</blockquote>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <p>에러 발생 시 <code class="language-plaintext highlighter-rouge">SyntaxError</code>라는 키워드와 함께, 에러의 상세 내용을 보여줍니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">파일이름</code>과 <code class="language-plaintext highlighter-rouge">줄번호</code>, <code class="language-plaintext highlighter-rouge">^</code> 문자를 통해 파이썬이 코드를 읽어 들일 때(<code class="language-plaintext highlighter-rouge">parser</code>) 문제가 발생한 위치를 표현합니다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">parser</code> 는 줄에서 에러가 감지된 가장 앞의 위치를 가리키는 작은 ‘화살표(<code class="language-plaintext highlighter-rouge">^</code>)’를 표시합니다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'참'</span><span class="p">)</span>
+<span class="k">else</span> <span class="c1"># : 를 넣지 않음
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'거짓'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File "&lt;ipython-input-2-cd2300dfe57f&gt;", line 3
+    else # : 를 넣지 않음
+         ^
+SyntaxError: invalid syntax --&gt; SyntaxError !!
+</code></pre></div></div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="예외exception">예외(Exception)</h2>
+
+<blockquote>
+  <p>실행 도중 예상하지 못한 상황(exception)을 맞이하면, 프로그램 실행을 멈춥니다.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>문법적으로는 옳지만, 실행시 발생하는 에러입니다.</p>
+  </li>
+  <li>
+    <p><em>아래 제시된 모든 에러는 <code class="language-plaintext highlighter-rouge">Exception</code>을 상속받아 이뤄진다.</em></p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="zerodivisionerror">ZeroDivisionError</h3>
+
+<blockquote>
+  <p>0으로 나눌 수 없다.</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+ZeroDivisionError                         Traceback (most recent call last)
+&lt;ipython-input-3-09140a8818e2&gt; in &lt;module&gt;
+      1 # 0으로 나눌수는 없습니다.
+----&gt; 2 10 * (1/0)
+
+ZeroDivisionError: division by zero
+</code></pre></div></div>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="typeerror">TypeError</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">+</span> <span class="s">'1'</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-4-166aa1c716a5&gt; in &lt;module&gt;
+      1 # 자료형에 대한 타입 자체가 잘못 되었을 경우
+----&gt; 2 1 + '1'
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+</code></pre></div></div>
+
+<p><br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 함수 호출 과정에서 TypeError
+</span><span class="nb">round</span><span class="p">(</span><span class="s">'3.5'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-5-dd9be65982e2&gt; in &lt;module&gt;
+      1 # 함수 호출 과정에서 TypeError
+----&gt; 2 round('3.5')
+
+TypeError: type str doesn't define __round__ method
+</code></pre></div></div>
+
+<p><br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 필수 argument 누락
+</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">random</span><span class="p">.</span><span class="n">sample</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-6-bd3b8e501c1b&gt; in &lt;module&gt;
+      1 import random
+----&gt; 2 random.sample([1, 2, 3])
+
+TypeError: sample() missing 1 required positional argument: 'k'
+</code></pre></div></div>
+
+<p><br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># argument 개수 초과
+</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+&lt;ipython-input-7-a5629217118f&gt; in &lt;module&gt;
+----&gt; 1 random.choice([1, 2, 3], 6)
+
+TypeError: choice() takes 2 positional arguments but 3 were given
+</code></pre></div></div>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="valueerror">ValueError</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># string -&gt; float -&gt; int 로 바꿔주길 기대하지말자..
+</span><span class="nb">int</span><span class="p">(</span><span class="s">'3.5'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+&lt;ipython-input-8-c4d854cc813b&gt; in &lt;module&gt;
+      1 # string -&gt; float -&gt; int 로 바꿔주길 기대하지말자..
+----&gt; 2 int('3.5')
+
+ValueError: invalid literal for int() with base 10: '3.5'
+</code></pre></div></div>
+
+<p><br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 존재하지 않는 숫자를 찾고자 한다 
+</span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">numbers</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+&lt;ipython-input-10-5a60a95a65c0&gt; in &lt;module&gt;
+      1 # 존재하지 않는 숫자를 찾고자 한다
+      2 numbers = [1, 2]
+----&gt; 3 numbers.index(3)
+
+ValueError: 3 is not in list
+</code></pre></div></div>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="indexerror">IndexError</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 존재하지 않는 index로 접근 !
+</span><span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">empty_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+&lt;ipython-input-11-c0f998a72552&gt; in &lt;module&gt;
+      1 # 존재하지 않는 index로 조회할 경우
+      2 empty_list = []
+----&gt; 3 empty_list[1]
+
+IndexError: list index out of range
+</code></pre></div></div>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="keyerror">KeyError</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># dictionary에서 Key가 없는 경우 
+</span><span class="n">songs</span> <span class="o">=</span> <span class="p">{</span><span class="s">'sia'</span><span class="p">:</span> <span class="s">'candy cane lane'</span><span class="p">}</span>
+<span class="n">songs</span><span class="p">[</span><span class="s">'queen'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+&lt;ipython-input-12-fb506014f16e&gt; in &lt;module&gt;
+      1 # 딕셔너리에서 Key가 없는 경우
+      2 songs = {'sia': 'candy cane lane'}
+----&gt; 3 songs['queen']
+
+KeyError: 'queen'
+</code></pre></div></div>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="modulenotfounderror">ModuleNotFoundError</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 모듈을 찾을 수 없는 경우
+</span><span class="kn">import</span> <span class="nn">jiyong</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+&lt;ipython-input-13-e6078a6c7495&gt; in &lt;module&gt;
+----&gt; 1 import jiyong
+
+ModuleNotFoundError: No module named 'jiyong'
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="importerror">ImportError</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 모듈을 찾았으나 가져오는 과정에서 실패하는 경우 (존재하지 않는 클래스/함수 호출)
+</span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">sampl</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+ImportError                               Traceback (most recent call last)
+&lt;ipython-input-15-9c395f6f4684&gt; in &lt;module&gt;
+      1 # 모듈을 찾았으나 가져오는 과정에서 실패하는 경우 (존재하지 않는 클래스/함수 호출)
+----&gt; 2 from random import sampl
+
+ImportError: cannot import name 'sampl' from 'random' 
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="keyboardinterrupt">KeyboardInterrupt</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">continue</span> 
+<span class="c1"># ctrl+c를 통해 종료해보자
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback (most recent call last):
+  File "c:/Users/KIM/Desktop/ssafy/TIL/my_study/my_test.py", line 2, in &lt;module&gt;
+    continue
+KeyboardInterrupt
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="예외-처리exception-handling">예외 처리(Exception Handling)</h2>
+
+<h3 id="try--except">try &amp; except</h3>
+
+<blockquote>
+  <p>기본적인 예외처리 방법, <code class="language-plaintext highlighter-rouge">try</code>문을 이용하여 예외처리 할 수 있다.</p>
+</blockquote>
+
+<ul>
+  <li>기초 문법</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="k">except</span> <span class="p">(</span><span class="n">예외</span><span class="p">):</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">2</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">try</code> 아래의 코드블락(code block)이 실행된다.</li>
+  <li>예외가 발생되지 않으면, <strong><code class="language-plaintext highlighter-rouge">except</code>없이 실행이 종료 된다.</strong></li>
+  <li>예외가 발생하면, <strong>남은 부분을 수행하지 않고</strong>, <code class="language-plaintext highlighter-rouge">except</code>가 실행된다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'값을 입력하시오 : '</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+<span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'숫자 입력하라고!!'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">empty_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">except</span> <span class="nb">IndexError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span> <span class="c1"># 변수처럼
+</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s">, 오류가 발생했습니다.'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="복수의-예외처리">복수의 예외처리</h4>
+
+<ul>
+  <li><strong>활용법</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="k">except</span> <span class="p">(</span><span class="n">예외1</span><span class="p">,</span> <span class="n">예외2</span><span class="p">):</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">2</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="k">except</span> <span class="n">예외1</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">2</span><span class="o">&gt;</span>
+<span class="k">except</span> <span class="n">예외2</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">3</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<ul>
+  <li><strong>예시</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">:</span> 
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'100으로 나눌 값을 입력하시오 : '</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="mi">100</span><span class="o">/</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+<span class="k">except</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"0으로 어떻게 나누니?"</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"이걸 어떻게 숫자로 바꾸니?"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100으로 나눌 값을 입력하시오 : -
+이걸 어떻게 숫자로 바꾸니?
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100으로 나눌 값을 입력하시오 : 0
+0으로 어떻게 나누니?
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="else">else</h4>
+
+<ul>
+  <li>에러가 발생하지 않는 경우 수행되는 문장은 <code class="language-plaintext highlighter-rouge">else</code>를 이용한다.</li>
+  <li>모든 except 절 뒤에와야 한다.</li>
+  <li>
+    <p>try 절이 예외를 일으키지 않을 때 실행되어야만 하는 코드에 적절하다.</p>
+  </li>
+  <li><strong>활용법</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="k">except</span> <span class="n">예외</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">2</span><span class="o">&gt;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">3</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>예시</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'100으로 나눌 값을 입력하시오 : '</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="mi">100</span><span class="o">/</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+<span class="k">except</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"0으로 어떻게 나누니?"</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"이걸 어떻게 숫자로 바꾸니?"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"똑바로 입력해줘서 고마워ㅎㅎ"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100으로 나눌 값을 입력하시오 : 5
+20.0
+똑바로 입력해줘서 고마워ㅎㅎ
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100으로 나눌 값을 입력하시오 : jiyong
+이걸 어떻게 숫자로 바꾸니?
+</code></pre></div></div>
+
+<p><br /></p>
+<h4 id="finally">finally</h4>
+
+<ul>
+  <li>반드시 수행해야하는 문장은 <code class="language-plaintext highlighter-rouge">finally</code>를 활용한다.</li>
+  <li>즉, 모든 상황에 실행되어야만 하는 코드를 정의하는데 활용한다.</li>
+  <li>
+    <p>예외의 발생 여부과 관계없이 try 문을 떠날 때 항상 실행한다.</p>
+  </li>
+  <li><strong>활용법</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">1</span><span class="o">&gt;</span>
+<span class="k">except</span> <span class="n">예외</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">2</span><span class="o">&gt;</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">코드</span> <span class="n">블럭</span> <span class="mi">3</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<ul>
+  <li><strong>예시</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'100으로 나눌 값을 입력하시오 : '</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="mi">100</span><span class="o">/</span><span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+<span class="k">except</span> <span class="nb">ZeroDivisionError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"0으로 어떻게 나누니?"</span><span class="p">)</span>
+<span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"이걸 어떻게 숫자로 바꾸니?"</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'무슨 에러지.. 파악하시면 연락주세요~'</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"똑바로 입력해줘서 고마워ㅎㅎ"</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"저는 이만 떠나겠습니다~"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100으로 나눌 값을 입력하시오 : s3
+이걸 어떻게 숫자로 바꾸니?
+저는 이만 떠나겠습니다~
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100으로 나눌 값을 입력하시오 : 15
+6.666666666666667
+똑바로 입력해줘서 고마워ㅎㅎ
+저는 이만 떠나겠습니다~
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="예외-발생-시키기exception-raising">예외 발생 시키기(Exception Raising)</h4>
+
+<p><strong><code class="language-plaintext highlighter-rouge">raise</code></strong>를 통해 예외를 강제로 발생시킬 수 있습니다.</p>
+
+<ul>
+  <li><strong>활용법</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">raise</span> <span class="o">&lt;</span><span class="n">에러</span><span class="o">&gt;</span><span class="p">(</span><span class="s">'메시지'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>예시</strong></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">avg</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">'학생이 없습니다.'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+    
+<span class="n">avg</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+
+  </div>
+  <button class="up-arrow">
+  <i class="fas fa-arrow-up"></i>
+</button>
+  <script src="/assets/script/nav.js"></script>
+  <script src="/assets/script/mode.js"></script>
+  <script src="/assets/script/up.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
