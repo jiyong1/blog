@@ -3,6 +3,7 @@ layout: post
 title: "[Python] 컨테이너"
 # categories: ['python']
 thumbnail: "/assets/images/Container.assets/61180439-44e60d80-a651-11e9-9adc-e60fa57c2165.png"
+description: "Python에서 여러 값을 저장할 수 있는 것"
 ---
 
 <br>

@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "[django] Intro"
-# categories: ['python']
+categories: ['django']
 thumbnail: "/assets/images/00_django_intro.assets/img_02.png"
+description: "django를 시작해보자"
 ---
 
-{% raw %}
 # [django] Intro
 
 ## Intro
@@ -304,7 +304,7 @@ def index(request): # 첫번째 인자는 반드시 request
 
 2. Filters
 
-- `{{ variable|filter }}`
+- {% raw %}`{{ variable|filter }}`{% endraw %}
 - 표시할 변수를 수정
 - 파이프(|)를 사용하여 적용
 
@@ -312,9 +312,9 @@ def index(request): # 첫번째 인자는 반드시 request
 
 3. Tags
 
-- `{% tag %}`
+- {% raw %} `{% tag %}`{% endraw %}
 - 출력 테스트를 만들거나 반복 또는 논리를 수행하여 제어 흐름을 만드는 등 보다 복잡한 일들을 수행
-- 일부 태그는 시작과 종료 태그가 필요(`{% tag %}` ... `{% endtag %}`)
+- 일부 태그는 시작과 종료 태그가 필요{% raw %}(`{% tag %}` ... `{% endtag %}`){% endraw %}
 
 <br>
 
@@ -361,12 +361,14 @@ def index(request): # 첫번째 인자는 반드시 request
 
 - 하위 템플릿이 채울 수 있는 공간
 
-- 가독성을 높이기 위해 선택적으로 `{% endblock %}` 태그에 이름 지정
+- 가독성을 높이기 위해 선택적으로 {% raw %}`{% endblock %}`{% endraw %} 태그에 이름 지정
 
+{% raw %}
   ```django
   {% block content %}
   {% endblock content %}
   ```
+{% endraw %}
 
 <br>
 
@@ -527,6 +529,7 @@ def hello(request, name):
     return render(request, 'hello.html', context)
 ```
 
+{% raw %}
 ```django
 <!-- hello.html -->
 
@@ -536,7 +539,7 @@ def hello(request, name):
   <h1>만나서 반가워요 {{ name }}님!</h1>
 {% endblock %}
 ```
-
+{% endraw %}
 <br>
 
 ### App URL mapping
@@ -638,7 +641,7 @@ urlpatterns = [
 <br>
 
 **url tag 사용하기**
-
+{% raw %}
 ```django
 <!-- index.html -->
 
@@ -651,7 +654,7 @@ urlpatterns = [
   <a href="{% url 'throw' %}">throw</a>
 {% endblock %}
 ```
-
+{% endraw %}
 <br>
 
 `{$ url '' %}`
@@ -687,7 +690,7 @@ urlpatterns = [
 def index(request):
     return render(request, 'index.html')
 ```
-
+{% raw %}
 ```django
 <!-- pages/templates/index.html -->
 
@@ -713,7 +716,7 @@ def index(request):
   <h2><a href="{% url 'index' %}">두번째 앱 index로 이동</a></h2>
 {% endblock %}
 ```
-
+{% endraw %}
 <br>
 
 **2가지 문제**
@@ -764,7 +767,7 @@ urlpatterns = [
 <br>
 
 **URL tag 변경**
-
+{% raw %}
 ```django
 <!-- articles/templates/index.html -->
 
@@ -779,7 +782,7 @@ urlpatterns = [
   <h2><a href="{% url 'pages:index' %}">두번째 앱 index로 이동</a></h2>
 {% endblock %}
 ```
-
+{% endraw %}
 <br>
 
 ### Template namespace
@@ -799,4 +802,3 @@ urlpatterns = [
   
   return render(request, 'pages/index.html')
   ```
-{% endraw %}

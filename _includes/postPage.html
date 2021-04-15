@@ -1,21 +1,29 @@
 {% if paginator.posts %}
-<h1>{{ paginator.first_page_path | remove: "/" }}</h1>
+<h1 class="category-title">{{ paginator.first_page_path | remove: "/" }}</h1>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 post-wrapper">
   {% for post in paginator.posts %}
-      <div class="post-list">
-        <div class="post-card">
-          <h2><a href="{{ post.url }}" class="link-post_list">{{ post.title }}</a></h2>
-          <p class="post-meta">{{ post.date | date: "%y-%m-%d" }}</p>
-          <div class="post-list-content">
-              {{ post.excerpt | truncatewords: 45, '...' }}
-              <p class="text-right"><a href="{{ post.url }}">read more...</a></p>
+      <div class="post-card-con">
+        <a href="{{ post.url }}" class="link-post_list">
+          <div class="post-card">
+            <div class="post-meta">
+              <h2 class="post-title">{{ post.title }}</h2>
+              <p class="post-date">{{ post.date | date: "%y-%m-%d" }}</p>
+            </div>
+            <div class="post-img-con">
+              <img class="post-img" src="{{ post.thumbnail }}" alt="{{ post.title }}">
+            </div>
+            <div class="post-list-content">
+              {{ post.description }}
+            </div>
           </div>
-        </div>
+        </a>
       </div>
   {% endfor %}
+</div>
 {% endif %}
 <script src="/assets/script/infiniteScroll.js"></script>
 <script>
-  const postWrapper = '.post-list';
+  const postWrapper = '.post-wrapper';
   const paginatePath = "page";
   const hostStart = window.location.href.indexOf(window.location.hostname) + window.location.hostname.length;
   let categoryString = window.location.href.slice(hostStart, window.location.href.length);

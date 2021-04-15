@@ -28,9 +28,6 @@ class InfiniteScroll {
           this.pNum++;
           return this.enable = true;                                
       }
-      else{
-          console.log('hi');
-      }
   }
 
   getChildItemsByAjaxHTML(HTMLText) {

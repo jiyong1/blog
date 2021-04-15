@@ -1,4 +1,6 @@
 - name: Python
   link: /python
+  thumbnail: /assets/images/python.png
 - name: django
   link: /django
+  thumbnail: /assets/images/django.png
