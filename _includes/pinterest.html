@@ -1,0 +1,26 @@
+<div class="pinterest-con">
+  <div class="new-card">
+    <a href="{{ post.url }}">
+      <img src="{{ post.thumbnail }}" alt="{{ post.title }} 이미지" class="new-thumbnail">
+      <div class="new-meta">
+        <div class="new-title">
+          {{ post.title }}
+
+          <div class="title-line"></div>
+        </div>
+        <p class="new-date">{{ post.date | date: "%y-%m-%d" }}</p>
+      </div>
+    </a>
+    <div class="new-category-con">
+      <a href="/{{ post.categories[0] }}/">
+        <div class="category-img-con">
+          <img src="/assets/images/{{ post.categories }}.png" alt="{{ post.categories[0] }} 이미지" class="category-img">
+        </div>
+        <div class="category-name">
+          {{ post.categories[0] }}
+          <div class="category-line"></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

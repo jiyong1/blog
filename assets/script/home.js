@@ -2,29 +2,46 @@
   const carouselTrackElem = document.querySelector('.carousel-track');
   const carouselLeftButton = document.querySelector('.carousel-button.l');
   const carouselRightButton = document.querySelector('.carousel-button.r');
-  const carouselDescription = [  
-    document.querySelector('.carousel-description.a'),
-    document.querySelector('.carousel-description.b'),
-    document.querySelector('.carousel-description.c'),
-  ]
+  const carouselDescription = document.querySelectorAll('.carousel-description');
   const carouselCircles = [  
     document.querySelector('.carousel-circle.a'),
     document.querySelector('.carousel-circle.b'),
     document.querySelector('.carousel-circle.c')
   ]
+  const newArticles = document.querySelectorAll('.pinterest-con');
 
   let slideNum = 2;
-  let carouselWidth;
   let currentSlide = 0;
   let carouselInterval;
 
-  function init() {
-    carouselWidth = document.querySelector('.carousel-track').clientWidth / (slideNum + 1)
-    for (let i = 0; i<carouselDescription.length; i++){
-      carouselDescription[i].style.width = `${carouselWidth}px`;
-      carouselDescription[i].style.left = `${carouselWidth*i}px`;
+  const init = () => {
+    let gridNum;
+    if (window.innerWidth < 768){
+      gridNum = 1;
     }
-  }
+    else if (window.innerWidth < 992){
+      gridNum = 2;
+    }
+    else if (window.innerWidth < 1400){
+      gridNum = 3;
+    }
+    else {
+      gridNum = 4;
+    }
+    let articleStack = Array.from({length: gridNum}, () => 0);
+    let colWidth = newArticles[0].clientWidth;
+    
+    for (let i = 0; i < newArticles.length; i++){
+      let minIndex = articleStack.indexOf(Math.min.apply(0, articleStack));
+      let x = colWidth * minIndex;
+      let y = articleStack[minIndex];
+      let currentHeight = newArticles[i].clientHeight;
+
+      newArticles[i].style.left = `${x}px`;
+      newArticles[i].style.top = `${y}px`;
+      articleStack[minIndex] += currentHeight;
+    }
+  };
 
   const nextSlide = () => {
     currentSlide ++;
@@ -33,15 +50,15 @@
 
   function slide() {
     if (currentSlide > slideNum){
-      carouselTrackElem.style.transform = `translateX(0)`;
+      carouselTrackElem.style.marginLeft = `0`;
       currentSlide = 0;
     }
     else if (currentSlide < 0){
-      carouselTrackElem.style.transform = `translateX(-${slideNum*carouselWidth}px)`
+      carouselTrackElem.style.marginLeft = `-${slideNum*100}%`;
       currentSlide = slideNum;
     }
     else{
-      carouselTrackElem.style.transform = `translateX(-${carouselWidth*currentSlide}px)`;
+      carouselTrackElem.style.marginLeft = `-${currentSlide*100}%`;
     }
     circleCheck();
   }
@@ -54,11 +71,6 @@
     carouselCircles[currentSlide].classList.add('circle-check');
   }
 
-  function makeAllTransparent() {
-    for(let i = 0; i < carouselDescription.length; i++){
-      carouselDescription[i].style.opacity = "0";
-    }
-  }
   function makeTransparent(){
     carouselDescription[currentSlide].style.opacity = "0";
   }
@@ -66,9 +78,12 @@
     carouselDescription[currentSlide].style.opacity = "1";
   }
  
-  window.addEventListener('resize', init);
+  window.addEventListener('load', () => {
+    carouselInterval = setInterval(nextSlide, 3000);
+    init();
+  });
   
-  carouselInterval = setInterval(nextSlide, 3000);
+  window.addEventListener('resize', init);
 
   carouselLeftButton.addEventListener('click', () => {
     clearInterval(carouselInterval);
@@ -102,6 +117,4 @@
       carouselInterval = setInterval(nextSlide, 3000);
     })
   }
-  setTimeout(init, 500);
-  makeAllTransparent();
 })();

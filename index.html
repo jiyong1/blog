@@ -3,4 +3,60 @@ layout: home
 title: Seven Two Devlog
 
 ---
-{% include homeLayout.html %}
+<div class="row">
+  <div class="col-lg-3 tmp mb-5">
+    <div class="home-card ttt">
+    </div>
+  </div>
+  <div class="carousel col-12 col-lg-9">
+    <div class="d-flex align-items-center">
+      <button class="carousel-button l"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel-container home-card">
+        <ul class="carousel-track">
+          <li class="carousel-slide a">
+            <img src="/assets/images/about_carou.png" alt="about 이미지" class="carousel-img">
+            <div class="carousel-description a">
+              <h3>Who Am I</h3>
+              <p>저를 소개합니다 !</p>
+              <div class="btn-con">
+                <a href="/about/" class="btn btn-secondary">About Page</a>
+              </div>
+            </div>
+          </li>
+          <li class="carousel-slide b">
+            <img src="/assets/images/post_carou.png" alt="about 이미지" class="carousel-img">
+            <div class="carousel-description b">
+              <h3>Posts</h3>
+              <p>매일 배운 것을 정리 및 기록합니다.</p>
+              <div class="btn-con">
+                <a href="/posts/" class="btn btn-secondary">Posts Page</a>
+              </div>
+            </div>
+          </li>
+          <li class="carousel-slide c">
+            <img src="/assets/images/imadeit_carou.png" alt="about 이미지" class="carousel-img">
+            <div class="carousel-description c">
+              <h3>I Made It</h3>
+              <p>공사중..</p>
+              <div>
+                <a href="/about/"><div class="des-btn"></div></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button class="carousel-button r"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="carousel-circle-con">
+      <div class="carousel-circle a circle-check"></div>
+      <div class="carousel-circle b"></div>
+      <div class="carousel-circle c"></div>
+    </div>
+  </div>
+</div>
+<h2 class="d-flex justify-content-center my-3">새로운 게시물</h2>
+<div class="row new-articles-con">
+  {% for post in site.posts | limit: 12 %}
+    {% include pinterest.html %}
+  {% endfor %}
+</div>
