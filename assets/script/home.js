@@ -79,7 +79,7 @@
   }
  
   window.addEventListener('load', () => {
-    carouselInterval = setInterval(nextSlide, 3000);
+    carouselInterval = setInterval(nextSlide, 4000);
     init();
   });
   
@@ -89,14 +89,14 @@
     clearInterval(carouselInterval);
     currentSlide --;
     slide();
-    carouselInterval = setInterval(nextSlide, 3000);
+    carouselInterval = setInterval(nextSlide, 4000);
   });
 
   carouselRightButton.addEventListener('click', () => {
     clearInterval(carouselInterval);
     currentSlide ++;
     slide();
-    carouselInterval = setInterval(nextSlide, 3000);
+    carouselInterval = setInterval(nextSlide, 4000);
   });
 
   carouselTrackElem.addEventListener('mouseenter', () => {
@@ -105,7 +105,7 @@
   });
 
   carouselTrackElem.addEventListener('mouseleave', () => {
-    carouselInterval = setInterval(nextSlide, 3000);
+    carouselInterval = setInterval(nextSlide, 4000);
     makeTransparent();
   });
 
@@ -114,7 +114,7 @@
       clearInterval(carouselInterval)
       currentSlide = i;
       slide();
-      carouselInterval = setInterval(nextSlide, 3000);
+      carouselInterval = setInterval(nextSlide, 4000);
     })
   }
 })();
