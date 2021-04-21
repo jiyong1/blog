@@ -1,0 +1,106 @@
+.post-list-box {
+  width: 80%;
+  // background-color: #555;
+  margin: 3rem auto;
+}
+
+.post-list-box a {
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem;
+  border-radius: .5rem;
+}
+
+body[data-mode='light'] {
+  .post-list-box a {
+    background-color: white;
+  }
+}
+body[data-mode='dark'] {
+  .post-list-box a {
+    background-color: #555;
+  }
+}
+
+.list-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  // filter: invert(100%);
+}
+
+.pn-btn-con {
+  position: relative;
+}
+
+.pn-btn {
+  position: absolute;
+  display: flex;
+  top: 0;
+  width: 45%;
+  margin-bottom: 1rem;
+}
+
+.pn-btn p {
+  margin-bottom: 0;
+}
+
+.prev-btn {
+  left: 0;
+}
+
+.next-btn {
+  right: 0;
+}
+
+.btn-text {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-icon {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.next-btn .btn-text {
+  align-items: flex-end;
+}
+
+.prev-btn .btn-text {
+  align-items: flex-start;
+}
+
+@media (max-width: 767px){
+  .post-list-box {
+    width: 100%;
+  }
+  .pn-btn{
+    position: static;
+    width: 100%;
+  }
+}
+
+@keyframes leftArrow {
+
+  to {
+    transform: translateX(-20%);
+  }
+}
+@keyframes rightArrow {
+  to {
+    transform: translateX(20%);
+  }
+}
+
+.prev-btn:hover i {
+  animation: leftArrow .5s infinite alternate;
+}
+.next-btn:hover i {
+  animation: rightArrow .5s infinite alternate;
+}

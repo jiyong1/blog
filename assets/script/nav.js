@@ -18,6 +18,7 @@
     else{
       toggleBtnElem.style.display = 'none';
       navlistElem.style.display = 'flex';
+      modeBtnElem.style.display = 'block';
     }
   }
 

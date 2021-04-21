@@ -79,11 +79,12 @@
   }
  
   window.addEventListener('load', () => {
-    carouselInterval = setInterval(nextSlide, 4000);
     init();
   });
   
   window.addEventListener('resize', init);
+
+  carouselInterval = setInterval(nextSlide, 4000);
 
   carouselLeftButton.addEventListener('click', () => {
     clearInterval(carouselInterval);

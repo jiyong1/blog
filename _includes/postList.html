@@ -1,0 +1,43 @@
+<div class="post-list-box">
+  {% assign thisCategory = page.categories[0] %}
+  {% assign categoryList = site.categories[thisCategory] %}
+  {% for post in categoryList %}
+    {% if post.url == page.url %}
+      {% assign pOffset = forloop.index0 | minus: 1 %}
+      {% assign nOffset = pOffset | plus: 2 %}
+      {% if forloop.first == false %}
+        {% assign next_post = categoryList[pOffset] %}
+      {% endif %}
+      {% if forloop.last == false %}
+        {% assign previous_post = categoryList[nOffset] %}
+      {% endif %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  <a href="/{{ thisCategory }}/" class="list-btn">카테고리 목록으로</a>
+  <div class="pn-btn-con">
+    {% if previous_post %}
+      <a class="prev-btn pn-btn" href="{{ previous_post.url }}">
+        <div class="btn-icon">
+          <i class="far fa-arrow-alt-circle-left"></i>
+        </div>
+        <div class="btn-text">
+          <p class="small">이전 페이지</p>
+          <p>{{ previous_post.title }}</p>
+        </div>
+      </a>
+    {% endif %}
+    {% if next_post %}
+      <a class="next-btn pn-btn" href="{{ next_post.url }}">
+        <div class="btn-text">
+          <p class="small">다음 페이지</p>
+          <p>{{ next_post.title }}</p>
+        </div>
+        <div class="btn-icon">
+          <i class="far fa-arrow-alt-circle-right"></i>
+        </div>
+      </a>
+    {% endif %}
+  </div>
+    
+</div>

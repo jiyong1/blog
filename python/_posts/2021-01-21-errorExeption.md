@@ -6,7 +6,7 @@ thumbnail: "/assets/images/python.png"
 description: "Python에서의 발생할 수 있는 에러와 에러 처리"
 ---
 
-# 에러 & 예외 처리
+# [Python] 에러 & 예외 처리
 
 <br>
 

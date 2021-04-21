@@ -1,6 +1,15 @@
-- name: Python
-  link: /python
-  thumbnail: /assets/images/python.png
+- name: javascript
+  link: /javascript
+  thumbnail: /assets/images/javascript.png
+- name: cs
+  link: /cs
+  thumbnail: /assets/images/cs.png
 - name: django
   link: /django
   thumbnail: /assets/images/django.png
+- name: WEB 기초
+  link: /webBasic
+  thumbnail: /assets/images/webBasic.png
+- name: Python
+  link: /python
+  thumbnail: /assets/images/python.png

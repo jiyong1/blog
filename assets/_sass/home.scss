@@ -29,7 +29,7 @@
 
 .profile > ul {
   margin: 0;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -202,9 +202,6 @@ body[data-mode='light'] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .title-line {
   height: 1px;
