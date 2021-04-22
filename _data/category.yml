@@ -8,8 +8,8 @@
   link: /django
   thumbnail: /assets/images/django.png
 - name: WEB 기초
-  link: /webBasic
-  thumbnail: /assets/images/webBasic.png
+  link: /web-basic
+  thumbnail: /assets/images/web-basic.png
 - name: Python
   link: /python
   thumbnail: /assets/images/python.png

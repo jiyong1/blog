@@ -2,7 +2,7 @@
 layout: post
 title: "[WEB 기초] CSS Layout & Bootstrap"
 # categories: ['python']
-thumbnail: "/assets/images/css_Layout.assets/CSSlayout.png"
+thumbnail: "/assets/images/css_layout.assets/CSSlayout.png"
 description: "CSS에서의 Flex와 bootstrap을 이용한 grid system"
 ---
 
@@ -53,7 +53,7 @@ description: "CSS에서의 Flex와 bootstrap을 이용한 grid system"
 >
 > 웹페이지의 컨테이너에 아이템의 폭과 높이 또는 순서를 변경해서 웹페이지의 사용 가능한 공간을 최대한 채우고 이를 디바이스 종류에 따라 유연하게 반영하도록 하는 개념
 
-![](/assets/images/css_Layout.assets/CSSlayout.png)
+![](/assets/images/css_layout.assets/CSSlayout.png)
 
 <br>
 
